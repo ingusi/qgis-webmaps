@@ -1,212 +1,443 @@
 <!DOCTYPE html>
-<html lang="de">
+
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>QGIS Web Maps</title>
+```
+<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="css/style.css">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="Interactive QGIS web maps for submarine cables, satellite-derived MNDWI, wind and solar energy."
+>
+
+<title>QGIS Web Maps</title>
+
+<link
+    rel="stylesheet"
+    href="css/style.css"
+>
+```
+
 </head>
 
 <body>
 
-    <!-- ==============================
-         HEADER
-    =============================== -->
-    <header class="site-header">
+```
+<!-- =========================================================
+     HEADER
+========================================================== -->
 
-        <div class="header-content">
+<header class="site-header">
 
-            <div class="logo">
-                <span class="logo-icon">🌍</span>
+    <div class="header-inner">
 
-                <div>
-                    <h1>QGIS Web Maps</h1>
-                    <p>Interactive Geospatial Data</p>
-                </div>
+        <div class="brand">
+
+            <div class="brand-icon">
+                🌍
+            </div>
+
+            <div class="brand-text">
+
+                <h1>
+                    QGIS Web Maps
+                </h1>
+
+                <p>
+                    Interactive Geospatial Analysis
+                </p>
+
             </div>
 
         </div>
 
-    </header>
+    </div>
+
+</header>
 
 
-    <!-- ==============================
-         NAVIGATION
-    =============================== -->
-    <nav class="map-navigation">
+<!-- =========================================================
+     MAP NAVIGATION
+========================================================== -->
 
-        <button
-            class="map-button active"
-            data-map="submarinecable">
+<nav
+    class="map-navigation"
+    aria-label="Map selection"
+>
 
-            1. Submarine Cable
-
-        </button>
-
-        <button
-            class="map-button"
-            data-map="mndwi">
-
-            2. Landsat / Sentinel MNDWI
-
-        </button>
-
-        <button
-            class="map-button"
-            data-map="wind-solar">
-
-            3. Wind / Solar
-
-        </button>
-
-    </nav>
+    <button
+        type="button"
+        class="map-button active"
+        data-map="submarinecable"
+    >
+        <span class="button-number">1</span>
+        <span>Submarine Cable</span>
+    </button>
 
 
-    <!-- ==============================
-         MAIN CONTENT
-    =============================== -->
-    <main class="main-content">
+    <button
+        type="button"
+        class="map-button"
+        data-map="mndwi"
+    >
+        <span class="button-number">2</span>
+        <span>Landsat / Sentinel MNDWI</span>
+    </button>
 
-        <!-- Titel -->
-        <section class="map-introduction">
+
+    <button
+        type="button"
+        class="map-button"
+        data-map="wind-solar"
+    >
+        <span class="button-number">3</span>
+        <span>Wind / Solar</span>
+    </button>
+
+</nav>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================== -->
+
+<main class="main-content">
+
+
+    <!-- =====================================================
+         MAP INFORMATION
+    ====================================================== -->
+
+    <section class="map-information">
+
+        <div>
+
+            <div
+                id="map-category"
+                class="map-category"
+            >
+                SUBMARINE CABLES
+            </div>
+
 
             <h2 id="map-title">
                 Submarine Cable
             </h2>
 
+
             <p id="map-description">
-                Interactive map showing submarine cable infrastructure
-                and related geographic information.
+
+                This interactive map shows submarine cable
+                infrastructure and the geographic distribution
+                of submarine cable landing points.
+
             </p>
 
-        </section>
+        </div>
+
+    </section>
 
 
-        <!-- Zusatzfunktionen -->
-        <section class="map-tools">
+    <!-- =====================================================
+         MAP TOOLS
+    ====================================================== -->
+
+    <section
+        id="map-tools"
+        class="map-tools"
+        aria-label="Map tools"
+    >
+
+        <!--
+            SUBMARINE CABLE TOOLS
+
+            These tools are currently available because the
+            submarinecable legend and CSV already exist.
+        -->
+
+        <button
+            type="button"
+            id="legend-button"
+            class="tool-button"
+        >
+            🗺️ Legend
+        </button>
+
+
+        <button
+            type="button"
+            id="chart-button"
+            class="tool-button"
+        >
+            📊 Landing Points by Country
+        </button>
+
+
+        <!--
+
+        ======================================================
+        MNDWI TOOLS — CURRENTLY DISABLED
+        ======================================================
+
+        Enable these when the following file exists:
+
+        assets/legends/mndwi.png
+
+        <button
+            type="button"
+            class="tool-button"
+        >
+            🗺️ Legend
+        </button>
+
+        -->
+
+
+        <!--
+
+        ======================================================
+        WIND / SOLAR TOOLS — CURRENTLY DISABLED
+        ======================================================
+
+        Enable these when the following files exist:
+
+        assets/legends/wind-solar.png
+        assets/charts/wind-solar.csv
+
+        <button
+            type="button"
+            class="tool-button"
+        >
+            🗺️ Legend
+        </button>
+
+        <button
+            type="button"
+            class="tool-button"
+        >
+            📊 Charts
+        </button>
+
+        -->
+
+    </section>
+
+
+    <!-- =====================================================
+         MAP CONTAINER
+    ====================================================== -->
+
+    <section
+        class="map-wrapper"
+        aria-label="Interactive map"
+    >
+
+        <div class="map-loading">
+            Loading map...
+        </div>
+
+
+        <iframe
+            id="map-frame"
+            src="maps/submarinecable/index.html"
+            title="Submarine Cable interactive QGIS map"
+            loading="eager"
+        >
+        </iframe>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================================
+     LEGEND MODAL
+========================================================== -->
+
+<div
+    id="legend-modal"
+    class="modal hidden"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal-backdrop"
+        data-close-modal="legend"
+    >
+    </div>
+
+
+    <div
+        class="modal-window legend-window"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="legend-modal-title"
+    >
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-kicker">
+                    MAP INFORMATION
+                </span>
+
+                <h3 id="legend-modal-title">
+                    Submarine Cable Legend
+                </h3>
+
+            </div>
+
 
             <button
-                id="legend-button"
-                class="tool-button">
-
-                🗺️ Legend
-
+                type="button"
+                class="close-button"
+                id="close-legend"
+                aria-label="Close legend"
+            >
+                ×
             </button>
+
+        </div>
+
+
+        <div class="modal-content legend-content">
+
+            <img
+                id="legend-image"
+                src="assets/legends/submarinecable.png"
+                alt="Legend for the Submarine Cable map"
+            >
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CHART MODAL
+========================================================== -->
+
+<div
+    id="chart-modal"
+    class="modal hidden"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal-backdrop"
+        data-close-modal="chart"
+    >
+    </div>
+
+
+    <div
+        class="modal-window chart-window"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="chart-modal-title"
+    >
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-kicker">
+                    SUBMARINE CABLE ANALYSIS
+                </span>
+
+                <h3 id="chart-modal-title">
+                    Landing Points by Country
+                </h3>
+
+                <p class="modal-description">
+
+                    Number of submarine cable landing points
+                    recorded for each country.
+
+                </p>
+
+            </div>
+
 
             <button
-                id="chart-button"
-                class="tool-button">
-
-                📊 Charts
-
+                type="button"
+                class="close-button"
+                id="close-chart"
+                aria-label="Close chart"
+            >
+                ×
             </button>
 
-        </section>
+        </div>
 
 
-        <!-- ==============================
-             LEGEND
-        =============================== -->
-        <section
-            id="legend-panel"
-            class="overlay-panel hidden">
-
-            <div class="panel-header">
-
-                <h3>Legend</h3>
-
-                <button
-                    id="close-legend"
-                    class="close-button">
-
-                    ×
-
-                </button>
-
-            </div>
-
-            <div class="panel-content">
-
-                <img
-                    id="legend-image"
-                    src="assets/legends/submarinecable.png"
-                    alt="Map legend">
-
-            </div>
-
-        </section>
-
-
-        <!-- ==============================
-             CHARTS
-        =============================== -->
-        <section
-            id="chart-panel"
-            class="overlay-panel hidden">
-
-            <div class="panel-header">
-
-                <h3>Charts</h3>
-
-                <button
-                    id="close-chart"
-                    class="close-button">
-
-                    ×
-
-                </button>
-
-            </div>
+        <div class="modal-content chart-content">
 
             <div
-                id="chart-container"
-                class="panel-content">
+                id="chart-status"
+                class="chart-status"
+            >
+                Loading CSV data...
+            </div>
 
-                <!-- Charts werden per JavaScript erzeugt -->
+
+            <div
+                id="chart-scroll-container"
+                class="chart-scroll-container"
+            >
+
+                <div
+                    id="chart-container"
+                    class="chart-container"
+                >
+
+                    <canvas
+                        id="landing-points-chart"
+                    >
+                    </canvas>
+
+                </div>
 
             </div>
 
-        </section>
+        </div>
+
+    </div>
+
+</div>
 
 
-        <!-- ==============================
-             MAP
-        =============================== -->
-        <section class="map-container">
+<!-- =========================================================
+     FOOTER
+========================================================== -->
 
-            <iframe
-                id="map-frame"
-                src="maps/submarinecable/index.html"
-                title="Interactive QGIS map"
-                loading="lazy">
-            </iframe>
+<footer class="site-footer">
 
-        </section>
+    <p>
+        QGIS / qgis2web · OpenLayers · Interactive Geospatial Maps
+    </p>
 
-    </main>
+</footer>
 
 
-    <!-- ==============================
-         FOOTER
-    =============================== -->
-    <footer class="site-footer">
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
 
-        <p>
-            Interactive maps created with QGIS and qgis2web.
-        </p>
-
-    </footer>
-
-
-    <!-- Chart.js -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/chart.js">
-    </script>
-
-    <!-- Eigener JavaScript-Code -->
-    <script src="js/app.js"></script>
+<script src="js/app.js"></script>
+```
 
 </body>
+
 </html>
