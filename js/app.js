@@ -1,40 +1,54 @@
 "use strict";
 
-/*
- * Main application for the QGIS web map viewer.
- * All paths are relative to the repository root.
- */
+
+/* =========================================================
+   MAP CONFIGURATION
+========================================================== */
 
 const MAPS = {
+
     submarinecable: {
         category: "SUBMARINE CABLES",
+
         title: "Submarine Cable",
+
         description:
             "Interactive overview of submarine cable infrastructure and associated landing points.",
 
-        url: "maps/submarinecable/index.html",
+        url:
+            "maps/submarinecable/index.html",
 
-        legend: "assets/legends/submarinecable.png",
+        legend:
+            "assets/legends/submarinecable.png",
 
         chart: {
             enabled: true,
-            csv: "assets/charts/submarinecable.csv",
-            title: "Submarine Cable Landing Points by Country"
+
+            csv:
+                "assets/charts/submarinecable.csv",
+
+            title:
+                "Submarine Cable Landing Points by Country"
         }
     },
 
+
     mndwi: {
         category: "SATELLITE REMOTE SENSING",
+
         title: "Landsat / Sentinel MNDWI",
+
         description:
             "Interactive satellite-based analysis using the Modified Normalized Difference Water Index (MNDWI).",
 
-        url: "maps/mndwi/index.html"
+        url:
+            "maps/mndwi/index.html"
 
         /*
-         * Enable these when the corresponding files are available.
+         * Enable later when the files are available:
          *
-         * legend: "assets/legends/mndwi.png",
+         * legend:
+         *     "assets/legends/mndwi.png",
          *
          * chart: {
          *     enabled: true,
@@ -44,18 +58,23 @@ const MAPS = {
          */
     },
 
+
     "wind-solar": {
         category: "RENEWABLE ENERGY",
+
         title: "Wind / Solar",
+
         description:
             "Interactive overview of selected wind and solar energy potential and related spatial information.",
 
-        url: "maps/wind-solar/index.html"
+        url:
+            "maps/wind-solar/index.html"
 
         /*
-         * Enable these when the corresponding files are available.
+         * Enable later when the files are available:
          *
-         * legend: "assets/legends/wind-solar.png",
+         * legend:
+         *     "assets/legends/wind-solar.png",
          *
          * chart: {
          *     enabled: true,
@@ -67,680 +86,991 @@ const MAPS = {
 };
 
 
-/* -------------------------------------------------------
-   DOM elements
-------------------------------------------------------- */
+/* =========================================================
+   DOM ELEMENTS
+========================================================== */
 
-const mapButtons = document.querySelectorAll(".map-button");
-
-const mapFrame = document.getElementById("map-frame");
-
-const mapCategory = document.getElementById("map-category");
-const mapTitle = document.getElementById("map-title");
-const mapDescription = document.getElementById("map-description");
-
-const legendButton = document.getElementById("legend-button");
-const chartButton = document.getElementById("chart-button");
-
-const legendModal = document.getElementById("legend-modal");
-const chartModal = document.getElementById("chart-modal");
-
-const legendImage = document.getElementById("legend-image");
-
-const chartTitle = document.getElementById("chart-title");
-const chartContainer = document.getElementById("chart-container");
-
-const mapLoading = document.getElementById("map-loading");
-
-let currentMapId = "submarinecable";
-let chartInstance = null;
+const mapButtons =
+    document.querySelectorAll(".map-button");
 
 
-/* -------------------------------------------------------
-   Utility functions
-------------------------------------------------------- */
-
-function getElement(selector, parent = document) {
-    return parent.querySelector(selector);
-}
+const mapFrame =
+    document.getElementById("map-frame");
 
 
-function showElement(element) {
-    if (!element) {
-        return;
-    }
-
-    element.hidden = false;
-    element.style.display = "";
-}
+const mapLoading =
+    document.getElementById("map-loading");
 
 
-function hideElement(element) {
-    if (!element) {
-        return;
-    }
-
-    element.hidden = true;
-    element.style.display = "none";
-}
+const mapCategory =
+    document.getElementById("map-category");
 
 
-/* -------------------------------------------------------
-   Map loading
-------------------------------------------------------- */
-
-function loadMap(mapId) {
-    const config = MAPS[mapId];
-
-    if (!config) {
-        console.error(`Unknown map: ${mapId}`);
-        return;
-    }
-
-    currentMapId = mapId;
-
-    updateNavigation(mapId);
-    updateMapInformation(config);
-    updateMapTools(config);
-
-    if (mapFrame) {
-        if (mapLoading) {
-            showElement(mapLoading);
-        }
-
-        mapFrame.src = config.url;
-    }
-
-    closeModal(legendModal);
-    closeModal(chartModal);
-}
+const mapTitle =
+    document.getElementById("map-title");
 
 
-function updateNavigation(mapId) {
+const mapDescription =
+    document.getElementById("map-description");
+
+
+const legendButton =
+    document.getElementById("legend-button");
+
+
+const chartButton =
+    document.getElementById("chart-button");
+
+
+const legendModal =
+    document.getElementById("legend-modal");
+
+
+const chartModal =
+    document.getElementById("chart-modal");
+
+
+const legendImage =
+    document.getElementById("legend-image");
+
+
+const legendModalTitle =
+    document.getElementById("legend-modal-title");
+
+
+const chartModalTitle =
+    document.getElementById("chart-modal-title");
+
+
+const chartStatus =
+    document.getElementById("chart-status");
+
+
+const chartContainer =
+    document.getElementById("chart-container");
+
+
+let currentMapId =
+    "submarinecable";
+
+
+/* =========================================================
+   MAP NAVIGATION
+========================================================== */
+
+function setActiveMapButton(mapId) {
+
     mapButtons.forEach((button) => {
-        const buttonMapId = button.dataset.map;
 
-        const isActive = buttonMapId === mapId;
+        const isActive =
+            button.dataset.map === mapId;
 
-        button.classList.toggle("active", isActive);
-        button.setAttribute("aria-selected", String(isActive));
+        button.classList.toggle(
+            "active",
+            isActive
+        );
+
+        button.setAttribute(
+            "aria-selected",
+            String(isActive)
+        );
     });
 }
 
 
 function updateMapInformation(config) {
-    if (mapCategory) {
-        mapCategory.textContent = config.category || "";
-    }
 
-    if (mapTitle) {
-        mapTitle.textContent = config.title || "";
-    }
+    mapCategory.textContent =
+        config.category || "";
 
-    if (mapDescription) {
-        mapDescription.textContent = config.description || "";
-    }
+
+    mapTitle.textContent =
+        config.title || "";
+
+
+    mapDescription.textContent =
+        config.description || "";
+}
+
+
+/* =========================================================
+   MAP TOOLS
+========================================================== */
+
+function resetMapTools() {
+
+    /*
+     * This is important:
+     *
+     * When changing maps, the old legend/chart state
+     * must never remain visible.
+     */
+
+    closeModal(legendModal);
+    closeModal(chartModal);
+
+
+    legendImage.removeAttribute("src");
+    legendImage.removeAttribute("alt");
+
+
+    legendButton.hidden = true;
+    chartButton.hidden = true;
+
+
+    chartStatus.classList.remove(
+        "visible",
+        "error"
+    );
+
+
+    chartStatus.textContent = "";
+
+
+    chartContainer.innerHTML = "";
 }
 
 
 function updateMapTools(config) {
-    /*
-     * Legend
-     */
 
-    if (legendButton) {
-        if (config.legend) {
-            showElement(legendButton);
-            legendButton.disabled = false;
-        } else {
-            hideElement(legendButton);
-            legendButton.disabled = true;
-        }
+    resetMapTools();
+
+
+    if (config.legend) {
+
+        legendButton.hidden = false;
     }
 
 
-    /*
-     * Chart
-     */
+    if (
+        config.chart &&
+        config.chart.enabled &&
+        config.chart.csv
+    ) {
 
-    if (chartButton) {
-        if (config.chart && config.chart.enabled && config.chart.csv) {
-            showElement(chartButton);
-            chartButton.disabled = false;
-        } else {
-            hideElement(chartButton);
-            chartButton.disabled = true;
-        }
+        chartButton.hidden = false;
     }
 }
 
 
-/* -------------------------------------------------------
-   Map iframe loading indicator
-------------------------------------------------------- */
+/* =========================================================
+   LOAD MAP
+========================================================== */
 
-if (mapFrame) {
-    mapFrame.addEventListener("load", () => {
-        if (mapLoading) {
-            hideElement(mapLoading);
-        }
-    });
+function loadMap(mapId) {
 
-    mapFrame.addEventListener("error", () => {
-        if (mapLoading) {
-            hideElement(mapLoading);
-        }
+    const config =
+        MAPS[mapId];
 
-        console.error("The selected web map could not be loaded.");
-    });
+
+    if (!config) {
+
+        console.error(
+            `Unknown map: ${mapId}`
+        );
+
+        return;
+    }
+
+
+    currentMapId =
+        mapId;
+
+
+    setActiveMapButton(
+        mapId
+    );
+
+
+    updateMapInformation(
+        config
+    );
+
+
+    updateMapTools(
+        config
+    );
+
+
+    mapLoading.classList.remove(
+        "hidden"
+    );
+
+
+    mapFrame.src =
+        config.url;
 }
 
 
-/* -------------------------------------------------------
-   Navigation buttons
-------------------------------------------------------- */
+/* =========================================================
+   IFRAME LOADING
+========================================================== */
 
-mapButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        const mapId = button.dataset.map;
+mapFrame.addEventListener(
+    "load",
+    () => {
 
-        if (!mapId) {
-            console.error("Map button has no data-map attribute.");
-            return;
-        }
-
-        loadMap(mapId);
-    });
-});
+        mapLoading.classList.add(
+            "hidden"
+        );
+    }
+);
 
 
-/* -------------------------------------------------------
-   Modal handling
-------------------------------------------------------- */
+mapFrame.addEventListener(
+    "error",
+    () => {
+
+        mapLoading.classList.add(
+            "hidden"
+        );
+
+        console.error(
+            "The selected QGIS web map could not be loaded."
+        );
+    }
+);
+
+
+/* =========================================================
+   MAP BUTTON EVENTS
+========================================================== */
+
+mapButtons.forEach(
+    (button) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const mapId =
+                    button.dataset.map;
+
+
+                if (!mapId) {
+                    return;
+                }
+
+
+                loadMap(
+                    mapId
+                );
+            }
+        );
+    }
+);
+
+
+/* =========================================================
+   MODAL FUNCTIONS
+========================================================== */
 
 function openModal(modal) {
+
     if (!modal) {
         return;
     }
 
+
     modal.hidden = false;
-    modal.classList.add("is-open");
-    document.body.classList.add("modal-open");
 
-    const closeButton = getElement("[data-close-modal]", modal);
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
-    if (closeButton) {
-        closeButton.focus();
-    }
+
+    document.body.style.overflow =
+        "hidden";
 }
 
 
 function closeModal(modal) {
+
     if (!modal) {
         return;
     }
 
-    modal.hidden = true;
-    modal.classList.remove("is-open");
 
-    if (!document.querySelector(".modal.is-open")) {
-        document.body.classList.remove("modal-open");
+    modal.hidden = true;
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    const anyModalOpen =
+        !legendModal.hidden ||
+        !chartModal.hidden;
+
+
+    if (!anyModalOpen) {
+
+        document.body.style.overflow =
+            "";
     }
 }
 
 
-/*
- * Close buttons
- */
+/* =========================================================
+   CLOSE BUTTONS / BACKDROPS
+========================================================== */
 
-document.querySelectorAll("[data-close-modal]").forEach((button) => {
-    button.addEventListener("click", () => {
-        const modal = button.closest(".modal");
+document
+    .querySelectorAll("[data-close-modal]")
+    .forEach(
+        (element) => {
 
-        closeModal(modal);
-    });
-});
+            element.addEventListener(
+                "click",
+                () => {
 
-
-/*
- * Close when clicking the dark backdrop
- */
-
-document.querySelectorAll(".modal").forEach((modal) => {
-    modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-            closeModal(modal);
+                    closeModal(
+                        element.closest(".modal")
+                    );
+                }
+            );
         }
-    });
-});
+    );
 
 
-/*
- * Escape key
- */
+document.addEventListener(
+    "keydown",
+    (event) => {
 
-document.addEventListener("keydown", (event) => {
-    if (event.key !== "Escape") {
-        return;
+        if (event.key !== "Escape") {
+            return;
+        }
+
+
+        closeModal(
+            legendModal
+        );
+
+
+        closeModal(
+            chartModal
+        );
     }
-
-    closeModal(legendModal);
-    closeModal(chartModal);
-});
+);
 
 
-/* -------------------------------------------------------
-   Legend
-------------------------------------------------------- */
+/* =========================================================
+   LEGEND
+========================================================== */
 
-if (legendButton) {
-    legendButton.addEventListener("click", () => {
-        const config = MAPS[currentMapId];
+legendButton.addEventListener(
+    "click",
+    () => {
+
+        const config =
+            MAPS[currentMapId];
+
 
         if (!config || !config.legend) {
             return;
         }
 
-        if (legendImage) {
-            legendImage.src = config.legend;
-            legendImage.alt = `${config.title} legend`;
-        }
 
-        openModal(legendModal);
-    });
-}
+        legendImage.src =
+            config.legend;
 
 
-/* -------------------------------------------------------
-   Chart.js
-------------------------------------------------------- */
-
-let chartJsPromise = null;
+        legendImage.alt =
+            `${config.title} legend`;
 
 
-function loadChartJs() {
-    if (window.Chart) {
-        return Promise.resolve(window.Chart);
-    }
+        legendModalTitle.textContent =
+            `${config.title} — Legend`;
 
-    if (chartJsPromise) {
-        return chartJsPromise;
-    }
 
-    chartJsPromise = new Promise((resolve, reject) => {
-        const existingScript = document.querySelector(
-            'script[data-chartjs="true"]'
+        openModal(
+            legendModal
         );
-
-        if (existingScript) {
-            existingScript.addEventListener("load", () => {
-                if (window.Chart) {
-                    resolve(window.Chart);
-                } else {
-                    reject(new Error("Chart.js loaded but Chart is unavailable."));
-                }
-            });
-
-            existingScript.addEventListener("error", () => {
-                reject(new Error("Chart.js could not be loaded."));
-            });
-
-            return;
-        }
-
-        const script = document.createElement("script");
-
-        script.src =
-            "https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js";
-
-        script.async = true;
-        script.dataset.chartjs = "true";
-
-        script.addEventListener("load", () => {
-            if (window.Chart) {
-                resolve(window.Chart);
-            } else {
-                reject(new Error("Chart.js loaded but Chart is unavailable."));
-            }
-        });
-
-        script.addEventListener("error", () => {
-            reject(new Error("Chart.js could not be loaded."));
-        });
-
-        document.head.appendChild(script);
-    });
-
-    return chartJsPromise;
-}
+    }
+);
 
 
-/* -------------------------------------------------------
-   CSV parser
-------------------------------------------------------- */
+/* =========================================================
+   CSV PARSER
+========================================================== */
 
 function parseCSV(text) {
+
     const rows = [];
 
     let row = [];
+
     let value = "";
 
     let insideQuotes = false;
 
-    for (let i = 0; i < text.length; i += 1) {
-        const character = text[i];
-        const nextCharacter = text[i + 1];
+
+    for (
+        let i = 0;
+        i < text.length;
+        i += 1
+    ) {
+
+        const character =
+            text[i];
+
+
+        const nextCharacter =
+            text[i + 1];
+
 
         if (insideQuotes) {
-            if (character === '"' && nextCharacter === '"') {
+
+            if (
+                character === '"' &&
+                nextCharacter === '"'
+            ) {
+
                 value += '"';
+
                 i += 1;
-            } else if (character === '"') {
-                insideQuotes = false;
-            } else {
-                value += character;
+
+                continue;
             }
+
+
+            if (character === '"') {
+
+                insideQuotes = false;
+
+                continue;
+            }
+
+
+            value +=
+                character;
 
             continue;
         }
+
 
         if (character === '"') {
+
             insideQuotes = true;
+
             continue;
         }
+
 
         if (character === ",") {
-            row.push(value);
-            value = "";
-            continue;
-        }
 
-        if (character === "\n") {
             row.push(value);
-            rows.push(row);
 
-            row = [];
             value = "";
 
             continue;
         }
+
 
         if (character === "\r") {
-            if (nextCharacter === "\n") {
+
+            if (
+                nextCharacter === "\n"
+            ) {
+
                 i += 1;
             }
 
+
             row.push(value);
+
             rows.push(row);
 
             row = [];
+
             value = "";
 
             continue;
         }
 
-        value += character;
+
+        if (character === "\n") {
+
+            row.push(value);
+
+            rows.push(row);
+
+            row = [];
+
+            value = "";
+
+            continue;
+        }
+
+
+        value +=
+            character;
     }
 
-    if (value.length > 0 || row.length > 0) {
+
+    if (
+        value.length > 0 ||
+        row.length > 0
+    ) {
+
         row.push(value);
+
         rows.push(row);
     }
+
 
     if (rows.length === 0) {
         return [];
     }
 
-    const headers = rows[0].map((header) =>
-        header.replace(/^\uFEFF/, "").trim()
-    );
+
+    const headers =
+        rows[0].map(
+            (header) =>
+                header
+                    .replace(/^\uFEFF/, "")
+                    .trim()
+        );
+
 
     return rows
         .slice(1)
-        .filter((currentRow) =>
-            currentRow.some((cell) => cell.trim() !== "")
+        .filter(
+            (currentRow) =>
+                currentRow.some(
+                    (cell) =>
+                        cell.trim() !== ""
+                )
         )
-        .map((currentRow) => {
-            const object = {};
+        .map(
+            (currentRow) => {
 
-            headers.forEach((header, index) => {
-                object[header] =
-                    currentRow[index] !== undefined
-                        ? currentRow[index].trim()
-                        : "";
-            });
+                const object = {};
 
-            return object;
-        });
+
+                headers.forEach(
+                    (header, index) => {
+
+                        object[header] =
+                            currentRow[index] !== undefined
+                                ? currentRow[index].trim()
+                                : "";
+                    }
+                );
+
+
+                return object;
+            }
+        );
 }
 
 
-/* -------------------------------------------------------
-   Submarine cable chart
-------------------------------------------------------- */
+/* =========================================================
+   NUMBER PARSING
+========================================================== */
 
-function prepareSubmarineCableData(rows) {
-    return rows
-        .map((row) => {
-            const country = row.name_de || "";
+function parseNumber(value) {
 
-            const landingPoints = Number(
-                String(row.anzahl_landepunkte || "0").replace(",", ".")
-            );
+    if (
+        value === null ||
+        value === undefined
+    ) {
 
-            return {
-                country,
-                landingPoints: Number.isFinite(landingPoints)
-                    ? landingPoints
-                    : 0
-            };
-        })
-        .filter((row) => row.country !== "")
-        .sort((a, b) => b.landingPoints - a.landingPoints);
-}
-
-
-async function renderSubmarineCableChart(csvUrl, title) {
-    if (!chartContainer) {
-        throw new Error("Chart container not found.");
+        return 0;
     }
 
-    chartContainer.innerHTML =
-        '<div class="chart-loading">Loading chart data…</div>';
 
-    const response = await fetch(csvUrl, {
-        cache: "no-cache"
-    });
+    const normalized =
+        String(value)
+            .trim()
+            .replace(/\s/g, "")
+            .replace(",", ".");
+
+
+    const number =
+        Number(normalized);
+
+
+    return Number.isFinite(number)
+        ? number
+        : 0;
+}
+
+
+/* =========================================================
+   SUBMARINE CABLE DATA
+========================================================== */
+
+function prepareSubmarineCableData(rows) {
+
+    /*
+     * Aggregate by country.
+     *
+     * This makes the chart robust even if the CSV later contains
+     * multiple rows for the same country.
+     */
+
+    const countryTotals =
+        new Map();
+
+
+    rows.forEach(
+        (row) => {
+
+            const country =
+                String(
+                    row.name_de || ""
+                ).trim();
+
+
+            if (!country) {
+                return;
+            }
+
+
+            const landingPoints =
+                parseNumber(
+                    row.anzahl_landepunkte
+                );
+
+
+            const previous =
+                countryTotals.get(country) || 0;
+
+
+            countryTotals.set(
+                country,
+                previous + landingPoints
+            );
+        }
+    );
+
+
+    return Array.from(
+        countryTotals.entries()
+    )
+        .map(
+            ([country, landingPoints]) => ({
+                country,
+                landingPoints
+            })
+        )
+        .sort(
+            (a, b) =>
+                b.landingPoints -
+                a.landingPoints
+        );
+}
+
+
+/* =========================================================
+   LOAD CSV
+========================================================== */
+
+async function loadCSV(url) {
+
+    const response =
+        await fetch(
+            url,
+            {
+                cache: "no-store"
+            }
+        );
+
 
     if (!response.ok) {
+
         throw new Error(
-            `CSV could not be loaded (${response.status} ${response.statusText}).`
+            `CSV could not be loaded: ${response.status} ${response.statusText}`
         );
     }
 
-    const csvText = await response.text();
 
-    const rows = parseCSV(csvText);
+    const text =
+        await response.text();
 
-    const data = prepareSubmarineCableData(rows);
 
-    if (data.length === 0) {
+    if (!text.trim()) {
+
+        throw new Error(
+            "The CSV file is empty."
+        );
+    }
+
+
+    return parseCSV(
+        text
+    );
+}
+
+
+/* =========================================================
+   CREATE CHART
+========================================================== */
+
+function createSubmarineCableChart(data) {
+
+    chartContainer.innerHTML = "";
+
+
+    if (!data.length) {
+
         chartContainer.innerHTML =
-            '<div class="chart-error">No chart data was found.</div>';
+            `
+            <div class="chart-empty">
+                No chart data was found.
+            </div>
+            `;
 
         return;
     }
 
-    chartContainer.innerHTML = `
-        <div class="chart-scroll">
-            <div class="chart-canvas-wrapper">
-                <canvas id="submarine-cable-chart"></canvas>
-            </div>
-        </div>
-    `;
 
-    const canvas = document.getElementById("submarine-cable-chart");
-
-    if (!canvas) {
-        throw new Error("Chart canvas could not be created.");
-    }
-
-    if (chartInstance) {
-        chartInstance.destroy();
-        chartInstance = null;
-    }
-
-    const chartHeight = Math.max(500, data.length * 24);
-
-    const wrapper = getElement(".chart-canvas-wrapper", chartContainer);
-
-    if (wrapper) {
-        wrapper.style.height = `${chartHeight}px`;
-    }
-
-    const Chart = await loadChartJs();
-
-    chartInstance = new Chart(canvas, {
-        type: "bar",
-
-        data: {
-            labels: data.map((item) => item.country),
-
-            datasets: [
-                {
-                    label: "Number of landing points",
-                    data: data.map((item) => item.landingPoints),
-
-                    backgroundColor: "rgba(37, 99, 235, 0.75)",
-                    borderColor: "rgba(37, 99, 235, 1)",
-                    borderWidth: 1,
-
-                    borderRadius: 3
-                }
-            ]
-        },
-
-        options: {
-            indexAxis: "y",
-
-            responsive: true,
-            maintainAspectRatio: false,
-
-            animation: {
-                duration: 400
-            },
-
-            plugins: {
-                title: {
-                    display: Boolean(title),
-                    text: title || ""
-                },
-
-                legend: {
-                    display: false
-                },
-
-                tooltip: {
-                    callbacks: {
-                        label(context) {
-                            return ` ${context.parsed.x} landing points`;
-                        }
-                    }
-                }
-            },
-
-            scales: {
-                x: {
-                    beginAtZero: true,
-
-                    ticks: {
-                        precision: 0
-                    },
-
-                    title: {
-                        display: true,
-                        text: "Number of landing points"
-                    }
-                },
-
-                y: {
-                    ticks: {
-                        autoSkip: false
-                    },
-
-                    title: {
-                        display: true,
-                        text: "Country"
-                    }
-                }
-            }
-        }
-    });
-}
+    const maxValue =
+        Math.max(
+            ...data.map(
+                (item) =>
+                    item.landingPoints
+            )
+        );
 
 
-/* -------------------------------------------------------
-   Chart button
-------------------------------------------------------- */
+    const scroll =
+        document.createElement(
+            "div"
+        );
 
-if (chartButton) {
-    chartButton.addEventListener("click", async () => {
-        const config = MAPS[currentMapId];
+    scroll.className =
+        "chart-scroll";
 
-        if (
-            !config ||
-            !config.chart ||
-            !config.chart.enabled ||
-            !config.chart.csv
-        ) {
-            return;
-        }
 
-        if (chartTitle) {
-            chartTitle.textContent =
-                config.chart.title || "Chart";
-        }
+    const list =
+        document.createElement(
+            "div"
+        );
 
-        openModal(chartModal);
+    list.className =
+        "chart-list";
 
-        try {
-            await renderSubmarineCableChart(
-                config.chart.csv,
-                config.chart.title
+
+    data.forEach(
+        (item) => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "chart-row";
+
+
+            const country =
+                document.createElement(
+                    "div"
+                );
+
+            country.className =
+                "chart-country";
+
+
+            country.textContent =
+                item.country;
+
+
+            country.title =
+                item.country;
+
+
+            const barArea =
+                document.createElement(
+                    "div"
+                );
+
+            barArea.className =
+                "chart-bar-area";
+
+
+            const bar =
+                document.createElement(
+                    "div"
+                );
+
+            bar.className =
+                "chart-bar";
+
+
+            const percentage =
+                maxValue > 0
+                    ? (
+                        item.landingPoints /
+                        maxValue
+                    ) * 100
+                    : 0;
+
+
+            bar.style.width =
+                `${percentage}%`;
+
+
+            barArea.appendChild(
+                bar
             );
-        } catch (error) {
-            console.error("Chart error:", error);
 
-            if (chartContainer) {
-                chartContainer.innerHTML = `
-                    <div class="chart-error">
-                        The chart could not be loaded.
-                        <br>
-                        <small>${escapeHtml(error.message)}</small>
-                    </div>
-                `;
-            }
+
+            const value =
+                document.createElement(
+                    "div"
+                );
+
+            value.className =
+                "chart-value";
+
+
+            value.textContent =
+                item.landingPoints;
+
+
+            row.appendChild(
+                country
+            );
+
+            row.appendChild(
+                barArea
+            );
+
+            row.appendChild(
+                value
+            );
+
+
+            list.appendChild(
+                row
+            );
         }
-    });
+    );
+
+
+    scroll.appendChild(
+        list
+    );
+
+
+    chartContainer.appendChild(
+        scroll
+    );
 }
 
 
-/* -------------------------------------------------------
-   HTML escaping for error messages
-------------------------------------------------------- */
+/* =========================================================
+   CHART
+========================================================== */
 
-function escapeHtml(value) {
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+async function showChart() {
+
+    const config =
+        MAPS[currentMapId];
+
+
+    if (
+        !config ||
+        !config.chart ||
+        !config.chart.enabled
+    ) {
+
+        return;
+    }
+
+
+    chartModalTitle.textContent =
+        config.chart.title;
+
+
+    chartStatus.classList.remove(
+        "error"
+    );
+
+
+    chartStatus.textContent =
+        "Loading CSV data...";
+
+
+    chartStatus.classList.add(
+        "visible"
+    );
+
+
+    chartContainer.innerHTML =
+        "";
+
+
+    openModal(
+        chartModal
+    );
+
+
+    try {
+
+        const rows =
+            await loadCSV(
+                config.chart.csv
+            );
+
+
+        const data =
+            prepareSubmarineCableData(
+                rows
+            );
+
+
+        createSubmarineCableChart(
+            data
+        );
+
+
+        chartStatus.classList.remove(
+            "visible"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Chart loading error:",
+            error
+        );
+
+
+        chartStatus.textContent =
+            `Could not load chart data: ${error.message}`;
+
+
+        chartStatus.classList.add(
+            "visible",
+            "error"
+        );
+    }
 }
 
 
-/* -------------------------------------------------------
-   Initial state
-------------------------------------------------------- */
+/* =========================================================
+   CHART BUTTON
+========================================================== */
 
-loadMap("submarinecable");
+chartButton.addEventListener(
+    "click",
+    () => {
+
+        showChart();
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================== */
+
+loadMap(
+    "submarinecable"
+);
