@@ -6,7 +6,7 @@ MAP CONFIGURATION
 
 const MAPS = {
 
-```
+
 submarinecable: {
 
     category:
@@ -160,7 +160,7 @@ mndwi: {
     */
 
 }
-```
+
 
 };
 
@@ -236,16 +236,16 @@ LOAD CHART.JS
 /*
 Chart.js is loaded dynamically.
 
-```
+
 This avoids putting another <script> element into
 index.html and keeps the application logic in one place.
-```
+
 
 */
 
 function loadChartLibrary() {
 
-```
+
 return new Promise(
     (resolve, reject) => {
 
@@ -290,7 +290,7 @@ return new Promise(
 
     }
 );
-```
+
 
 }
 
@@ -300,7 +300,7 @@ MAP LOADING
 
 function loadMap(mapId) {
 
-```
+
 const map =
     MAPS[mapId];
 
@@ -384,7 +384,7 @@ mapFrame.src =
  */
 
 updateTools(map);
-```
+
 
 }
 
@@ -396,12 +396,12 @@ mapFrame.addEventListener(
 "load",
 () => {
 
-```
+
     mapLoading.style.display =
         "none";
 
 }
-```
+
 
 );
 
@@ -411,7 +411,7 @@ UPDATE TOOLS
 
 function updateTools(map) {
 
-```
+
 /*
  * Submarine Cable currently has
  * a legend and a chart.
@@ -454,7 +454,7 @@ if (hasLegend) {
         `${map.title} legend`;
 
 }
-```
+
 
 }
 
@@ -465,7 +465,7 @@ NAVIGATION EVENTS
 mapButtons.forEach(
 button => {
 
-```
+
     button.addEventListener(
         "click",
         () => {
@@ -480,7 +480,7 @@ button => {
     );
 
 }
-```
+
 
 );
 
@@ -492,7 +492,7 @@ legendButton.addEventListener(
 "click",
 () => {
 
-```
+
     const map =
         MAPS[currentMapId];
 
@@ -516,7 +516,7 @@ legendButton.addEventListener(
     );
 
 }
-```
+
 
 );
 
@@ -528,7 +528,7 @@ chartButton.addEventListener(
 "click",
 async () => {
 
-```
+
     const map =
         MAPS[currentMapId];
 
@@ -553,7 +553,7 @@ async () => {
     );
 
 }
-```
+
 
 );
 
@@ -563,7 +563,7 @@ OPEN MODAL
 
 function openModal(modal) {
 
-```
+
 modal.classList.remove(
     "hidden"
 );
@@ -577,7 +577,7 @@ modal.setAttribute(
 
 document.body.style.overflow =
     "hidden";
-```
+
 
 }
 
@@ -587,7 +587,7 @@ CLOSE MODAL
 
 function closeModal(modal) {
 
-```
+
 modal.classList.add(
     "hidden"
 );
@@ -612,7 +612,7 @@ if (
         "";
 
 }
-```
+
 
 }
 
@@ -622,7 +622,7 @@ CLOSE ALL MODALS
 
 function closeAllModals() {
 
-```
+
 closeModal(
     legendModal
 );
@@ -631,7 +631,7 @@ closeModal(
 closeModal(
     chartModal
 );
-```
+
 
 }
 
@@ -643,13 +643,13 @@ closeLegendButton.addEventListener(
 "click",
 () => {
 
-```
+
     closeModal(
         legendModal
     );
 
 }
-```
+
 
 );
 
@@ -657,13 +657,13 @@ closeChartButton.addEventListener(
 "click",
 () => {
 
-```
+
     closeModal(
         chartModal
     );
 
 }
-```
+
 
 );
 
@@ -676,7 +676,7 @@ document.querySelectorAll(
 ).forEach(
 backdrop => {
 
-```
+
     backdrop.addEventListener(
         "click",
         () => {
@@ -712,7 +712,7 @@ backdrop => {
     );
 
 }
-```
+
 
 );
 
@@ -724,7 +724,7 @@ document.addEventListener(
 "keydown",
 event => {
 
-```
+
     if (
         event.key ===
         "Escape"
@@ -735,7 +735,7 @@ event => {
     }
 
 }
-```
+
 
 );
 
@@ -745,7 +745,7 @@ CSV LOADING
 
 async function loadCSV(url) {
 
-```
+
 const response =
     await fetch(url, {
         cache: "no-cache"
@@ -777,7 +777,7 @@ const text =
 
 
 return text;
-```
+
 
 }
 
@@ -788,20 +788,20 @@ CSV PARSER
 /*
 This parser handles:
 
-```
+
 - commas
 - quoted values
 - commas inside quoted values
 - escaped quotes
 - Windows line endings
 - UTF-8 text
-```
+
 
 */
 
 function parseCSV(text) {
 
-```
+
 const rows = [];
 
 let row = [];
@@ -1021,7 +1021,7 @@ return rows
 
         }
     );
-```
+
 
 }
 
@@ -1033,7 +1033,7 @@ function prepareSubmarineCableData(
 rows
 ) {
 
-```
+
 /*
  * Only rows with a country name and a valid
  * landing-point number are used.
@@ -1086,7 +1086,7 @@ validRows.sort(
 
 
 return validRows;
-```
+
 
 }
 
@@ -1098,7 +1098,7 @@ async function loadSubmarineCableChart(
 configuration
 ) {
 
-```
+
 chartStatus.className =
     "chart-status";
 
@@ -1185,7 +1185,7 @@ catch (error) {
         `Could not load the chart: ${error.message}`;
 
 }
-```
+
 
 }
 
@@ -1198,7 +1198,7 @@ data,
 title
 ) {
 
-```
+
 /*
  * Destroy previous chart.
  */
@@ -1536,7 +1536,7 @@ landingPointsChart =
 
         }
     );
-```
+
 
 }
 
@@ -1548,7 +1548,7 @@ function tooltipTitle(
 tooltipItems
 ) {
 
-```
+
 if (
     !tooltipItems ||
     tooltipItems.length === 0
@@ -1560,7 +1560,7 @@ if (
 
 
 return tooltipItems[0].label;
-```
+
 
 }
 
@@ -1572,13 +1572,13 @@ function tooltipLabel(
 context
 ) {
 
-```
+
 const value =
     context.raw;
 
 
 return ` Landing points: ${value}`;
-```
+
 
 }
 
@@ -1588,7 +1588,7 @@ INITIALIZATION
 
 function initializeApplication() {
 
-```
+
 /*
  * Start with Submarine Cable.
  */
@@ -1596,7 +1596,7 @@ function initializeApplication() {
 loadMap(
     "submarinecable"
 );
-```
+
 
 }
 
