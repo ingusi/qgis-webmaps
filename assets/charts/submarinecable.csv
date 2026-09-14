@@ -1,0 +1,259 @@
+qc_id,continent,name_de,anzahl_landepunkte
+0,Europe,Estland,4
+1,Asia,Indien,24
+2,Asia,Volksrepublik China,17
+3,Europe,Österreich,0
+4,Africa,Äthiopien,0
+88,Asia,Saudi-Arabien,6
+89,Africa,Botswana,0
+90,Africa,Simbabwe,0
+91,Asia,Pakistan,1
+95,Asia,Kambodscha,1
+97,Africa,Gabun,2
+100,Asia,Vereinigte Arabische Emirate,6
+115,Europe,Frankreich,44
+116,Asia,Südkorea,10
+117,Asia,Nordkorea,0
+118,Africa,Marokko,8
+119,North America,Nicaragua,2
+120,Africa,Republik Kongo,1
+121,Africa,Demokratische Republik Kongo,5
+122,Africa,Namibia,1
+123,Asia,Afghanistan,0
+13,Europe,Dänemark,29
+169,Africa,Sudan,1
+14,Africa,Libyen,14
+15,Africa,Tunesien,2
+16,Europe,Rumänien,1
+17,Europe,Ungarn,0
+18,Europe,Slowakei,0
+19,Europe,Polen,1
+20,Europe,Italien,51
+21,Europe,Schweiz,2
+22,Asia,Iran,7
+23,Europe,Niederlande,12
+24,Africa,Mosambik,3
+25,Asia,Bangladesch,2
+26,Africa,Tschad,0
+27,Europe,Island,3
+28,Africa,Algerien,6
+29,Europe,Liechtenstein,0
+30,Africa,Elfenbeinküste,1
+31,Europe,Serbien,0
+32,Africa,Mali,0
+33,Africa,Senegal,1
+34,Africa,Nigeria,2
+35,Africa,Benin,1
+36,Africa,Angola,7
+37,Europe,Kroatien,2
+38,Europe,Slowenien,0
+39,Asia,Myanmar,2
+40,Africa,Uganda,2
+41,Oceania,Nauru,0
+42,North America,Kuba,4
+43,South America,Ecuador,7
+44,South America,Kolumbien,11
+45,South America,Paraguay,0
+46,South America,Isla Brasilera,0
+47,Europe,Portugal,19
+48,Europe,Republik Moldau,0
+49,Asia,Turkmenistan,0
+50,Asia,Nepal,0
+51,Africa,Kamerun,3
+52,Africa,Niger,0
+53,Africa,Burkina Faso,0
+54,North America,Panama,7
+55,South America,Venezuela,15
+56,Oceania,Papua-Neuguinea,15
+57,Africa,Ägypten,9
+58,Asia,Jemen,3
+59,Africa,Mauretanien,2
+60,Antarctica,Antarktika,0
+61,Europe,Vatikanstadt,1
+62,Africa,Madagaskar,4
+63,Asia,Philippinen,71
+64,Asia,Siachen-Gletscher,0
+65,Oceania,Australien,27
+66,North America,Grönland,4
+67,Oceania,Fidschi,3
+68,Oceania,Neuseeland,21
+69,North America,Saint-Barthélemy,1
+70,Oceania,Niue,1
+211,Asia,Japan,59
+71,North America,Curaçao,2
+72,North America,Aruba,2
+73,North America,Bahamas,19
+74,Seven seas (open ocean),Malediven,13
+75,Oceania,Norfolkinsel,0
+76,Oceania,Salomonen,3
+77,Seven seas (open ocean),Clipperton-Insel,0
+78,South America,Falklandinseln,0
+215,North America,Grenada,3
+79,Oceania,Tuvalu,1
+80,Asia,Indonesien,143
+81,Asia,Malaysia,21
+82,South America,Chile,20
+83,South America,Bolivien,0
+84,South America,Peru,6
+85,South America,Argentinien,3
+5,South America,Suriname,2
+6,Africa,Südsudan,0
+7,Africa,Somalia,2
+8,Africa,Kenia,3
+9,Asia,Irak,1
+10,Europe,Albanien,3
+11,Europe,Spanien,49
+12,Asia,Kirgisistan,0
+86,Asia,Dekelia,0
+87,Asia,Katar,4
+92,Europe,Bulgarien,3
+93,Asia,Thailand,7
+200,Africa,Äquatorialguinea,3
+94,Asia,Israel,10
+96,Asia,Aserbaidschan,1
+98,Asia,Palästina,0
+99,Europe,Luxemburg,0
+101,Europe,Belgien,2
+102,Asia,Georgien,1
+103,Europe,San Marino,0
+104,Asia,Republik Zypern,2
+105,Asia,Brunei,3
+106,Asia,Libanon,4
+107,Africa,Malawi,0
+108,Africa,Tansania,2
+109,Asia,Syrien,1
+110,South America,Guyana,1
+111,Europe,Belarus,0
+112,Africa,Eswatini,0
+113,Europe,Andorra,0
+114,Africa,Somaliland,1
+124,North America,Guantanamo Bay Naval Base,1
+201,Asia,Baikonur,0
+125,Africa,Westsahara,1
+126,North America,Costa Rica,2
+127,Europe,Deutschland,9
+128,Europe,Gibraltar,1
+129,North America,Vereinigte Staaten,152
+130,North America,Kanada,155
+131,North America,Mexiko,14
+132,North America,Saint-Pierre und Miquelon,2
+216,Europe,Malta,7
+133,Asia,Bhutan,0
+134,Europe,Ukraine,1
+135,Asia,Laos,0
+136,Africa,Südafrika,8
+137,North America,Saint-Martin,6
+138,North America,Sint Maarten,6
+139,Asia,Oman,8
+140,Asia,Usbekistan,0
+141,Asia,Kasachstan,1
+142,Asia,Tadschikistan,0
+143,Europe,Litauen,2
+144,South America,Brasilien,64
+145,South America,Uruguay,2
+146,Asia,Mongolei,0
+147,Europe,Russland,30
+148,Europe,Tschechien,0
+149,Europe,Lettland,3
+150,Europe,Norwegen,48
+151,Europe,Schweden,28
+152,Europe,Finnland,7
+153,Asia,Vietnam,3
+154,Europe,Nordmazedonien,0
+155,North America,Turks- und Caicosinseln,1
+156,Europe,Kosovo,0
+157,Asia,Türkei,6
+158,Africa,Dschibuti,2
+159,Africa,Eritrea,0
+160,Asia,Armenien,0
+161,Europe,Irland,14
+162,Europe,Vereinigtes Königreich,121
+163,Europe,Griechenland,35
+164,Africa,Sambia,0
+165,Africa,Sierra Leone,1
+166,Africa,Guinea,1
+167,Africa,Liberia,1
+168,Africa,Zentralafrikanische Republik,0
+170,North America,Guatemala,2
+171,North America,Honduras,3
+172,North America,Haiti,2
+173,Oceania,Pitcairninseln,0
+174,Oceania,Französisch-Polynesien,18
+175,North America,Dominikanische Republik,5
+176,Oceania,Marshallinseln,1
+177,Asia,Kuwait,2
+178,Europe,Monaco,2
+179,Asia,Osttimor,1
+180,North America,El Salvador,0
+181,Africa,Burundi,0
+182,Europe,Bosnien und Herzegowina,1
+183,North America,Trinidad und Tobago,4
+184,Africa,Ruanda,0
+185,North America,St. Vincent und die Grenadinen,7
+186,North America,Barbados,3
+187,Europe,Montenegro,0
+188,North America,St. Lucia,2
+189,Asia,Jordanien,1
+190,North America,Dominica,2
+191,Africa,Lesotho,0
+192,North America,United States Minor Outlying Islands,0
+193,North America,Montserrat,1
+194,Africa,Togo,1
+195,Africa,Ghana,2
+196,Africa,Guinea-Bissau,1
+197,North America,Belize,3
+198,Africa,Bir Tawil,0
+199,North America,Antigua und Barbuda,3
+202,Asia,Hongkong,7
+205,Asia,Türkische Republik Nordzypern,2
+206,South America,Südpatagonisches Eisfeld,0
+203,Africa,Gambia,1
+204,Asia,Akrotiri,0
+207,Asia,UN-Pufferzone in Zypern,0
+214,Seven seas (open ocean),Französische Süd- und Antarktisgebiete,0
+208,Oceania,Neukaledonien,9
+209,Asia,Sri Lanka,4
+210,Asia,Republik China,17
+212,North America,St. Kitts und Nevis,2
+213,North America,Amerikanische Jungferninseln,11
+217,Seven seas (open ocean),Seychellen,2
+218,Seven seas (open ocean),St. Helena,1
+219,Oceania,Kiribati,2
+220,Oceania,Vanuatu,4
+221,North America,Puerto Rico,6
+222,North America,Anguilla,1
+223,North America,Britische Jungferninseln,2
+224,North America,Jamaika,9
+225,North America,Cayman Islands,2
+226,North America,Bermuda,3
+227,Seven seas (open ocean),Heard und McDonaldinseln,0
+228,Seven seas (open ocean),Mauritius,4
+229,Africa,Komoren,4
+230,Africa,São Tomé und Príncipe,1
+231,Seven seas (open ocean),Britisches Territorium im Indischen Ozean,1
+232,Africa,Kap Verde,10
+233,Europe,Jersey,3
+234,Europe,Guernsey,4
+235,Europe,Isle of Man,5
+236,Europe,Åland,4
+237,Asia,Singapur,8
+238,Oceania,Tonga,3
+239,Oceania,Wallis und Futuna,2
+240,Europe,Färöer,2
+241,Asia,Australische Territorien im Indischen Ozean,2
+242,Oceania,Cookinseln,2
+243,Oceania,Samoa,2
+244,Oceania,Föderierte Staaten von Mikronesien,3
+245,Oceania,Amerikanisch-Samoa,1
+246,Oceania,Nördliche Marianen,6
+247,Seven seas (open ocean),Südgeorgien und die Südlichen Sandwichinseln,0
+248,Oceania,Palau,1
+249,Oceania,Guam,5
+250,Asia,Bahrain,3
+251,Oceania,Korallenmeerinseln,0
+252,Asia,Wake,0
+253,Asia,Macau,0
+254,Oceania,Ashmore- und Cartierinseln,0
+255,North America,Bajo-Nuevo-Bank,0
+256,North America,Serranilla Bank,0
+257,Asia,Scarborough-Riff,0
