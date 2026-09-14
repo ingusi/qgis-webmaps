@@ -193,27 +193,27 @@
         layer_ESRISatellite_0;
         map.createPane('pane_DarkMatterretina_1');
         map.getPane('pane_DarkMatterretina_1').style.zIndex = 401;
-        var layer_DarkMatterretina_1 = L.tileLayer('https://a.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}@2x.png', {
+        var layer_DarkMatterretina_1 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
             pane: 'pane_DarkMatterretina_1',
             opacity: 1.0,
-            attribution: '<a href="https://cartodb.com/basemaps/">Map tiles by CartoDB, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a>',
+            attribution: 'Esri, HERE, Garmin, &copy; OpenStreetMap contributors, GIS user community',
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,
-            maxNativeZoom: 20
+            maxNativeZoom: 16
         });
         layer_DarkMatterretina_1;
         map.addLayer(layer_DarkMatterretina_1);
         map.createPane('pane_Voyagerretina_2');
         map.getPane('pane_Voyagerretina_2').style.zIndex = 402;
-        var layer_Voyagerretina_2 = L.tileLayer('https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png', {
+        var layer_Voyagerretina_2 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
             pane: 'pane_Voyagerretina_2',
             opacity: 1.0,
-            attribution: '',
+            attribution: 'Esri, HERE, Garmin, &copy; OpenStreetMap contributors, GIS user community',
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,
-            maxNativeZoom: 18
+            maxNativeZoom: 16
         });
         layer_Voyagerretina_2;
         function pop_LndernachAnzahlderLandepunkte_3(feature, layer) {
@@ -644,8 +644,8 @@
             {label: '<img src="legend/Lnder_4.png" /> Länder', layer: layer_Lnder_4},
             {label: 'Länder nach Anzahl der Landepunkte<br /><table><tr><td style="text-align: center;"><img src="legend/LndernachAnzahlderLandepunkte_3_050.png" /></td><td>0 - 5</td></tr><tr><td style="text-align: center;"><img src="legend/LndernachAnzahlderLandepunkte_3_5201.png" /></td><td>5 - 20</td></tr><tr><td style="text-align: center;"><img src="legend/LndernachAnzahlderLandepunkte_3_20502.png" /></td><td>20 - 50</td></tr><tr><td style="text-align: center;"><img src="legend/LndernachAnzahlderLandepunkte_3_501003.png" /></td><td>50 - 100</td></tr><tr><td style="text-align: center;"><img src="legend/LndernachAnzahlderLandepunkte_3_1001304.png" /></td><td>100 - 130</td></tr></table>', layer: layer_LndernachAnzahlderLandepunkte_3},
         {label: '<b>Basemaps</b>',  selectAllCheckbox: true, children: [
-            {label: "Voyager (retina)", layer: layer_Voyagerretina_2, radioGroup: 'bm' },
-            {label: "Dark Matter (retina)", layer: layer_DarkMatterretina_1, radioGroup: 'bm' },
+            {label: "Hell (Esri Light Gray)", layer: layer_Voyagerretina_2, radioGroup: 'bm' },
+            {label: "Dunkel (Esri Dark Gray)", layer: layer_DarkMatterretina_1, radioGroup: 'bm' },
             {label: "ESRI Satellite", layer: layer_ESRISatellite_0, radioGroup: 'bm' },]},]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
