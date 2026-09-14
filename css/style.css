@@ -1,0 +1,452 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: #f4f6f8;
+    color: #17202a;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.site-header {
+    width: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #071d2b,
+            #0b3448
+        );
+
+    color: white;
+
+    padding: 22px 32px;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.header-content {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo-icon {
+    font-size: 38px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.logo p {
+    margin-top: 3px;
+
+    font-size: 13px;
+
+    color: #a9c4d2;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.map-navigation {
+    display: flex;
+
+    gap: 8px;
+
+    padding: 14px 32px;
+
+    background: white;
+
+    border-bottom:
+        1px solid #dfe5e8;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.map-button {
+    border: none;
+
+    background: transparent;
+
+    color: #425466;
+
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.map-button:hover {
+    background: #edf3f6;
+
+    color: #0b536f;
+}
+
+.map-button.active {
+    background: #0b536f;
+
+    color: white;
+
+    box-shadow:
+        0 3px 8px rgba(11, 83, 111, 0.25);
+}
+
+.map-button:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+    width: 100%;
+
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    padding: 25px 32px 40px;
+}
+
+
+/* =========================================
+   INTRODUCTION
+========================================= */
+
+.map-introduction {
+    margin-bottom: 18px;
+}
+
+.map-introduction h2 {
+    font-size: 28px;
+
+    color: #102a38;
+
+    margin-bottom: 8px;
+}
+
+.map-introduction p {
+    max-width: 900px;
+
+    line-height: 1.65;
+
+    color: #596a75;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   MAP TOOLS
+========================================= */
+
+.map-tools {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+}
+
+.tool-button {
+    border: 1px solid #cbd6dc;
+
+    background: white;
+
+    color: #173b4b;
+
+    padding: 9px 15px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.tool-button:hover {
+    background: #edf5f8;
+
+    border-color: #0b536f;
+}
+
+.tool-button.active {
+    background: #0b536f;
+
+    color: white;
+
+    border-color: #0b536f;
+}
+
+
+/* =========================================
+   MAP
+========================================= */
+
+.map-container {
+    width: 100%;
+
+    height: 720px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    border: 1px solid #d7e0e5;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+#map-frame {
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    display: block;
+
+    background: #e9eef1;
+}
+
+
+/* =========================================
+   OVERLAY PANELS
+========================================= */
+
+.overlay-panel {
+    position: fixed;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: min(850px, 90vw);
+
+    max-height: 85vh;
+
+    overflow: auto;
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3);
+
+    z-index: 1000;
+}
+
+.overlay-panel.hidden {
+    display: none;
+}
+
+
+/* =========================================
+   PANEL HEADER
+========================================= */
+
+.panel-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 16px 20px;
+
+    border-bottom:
+        1px solid #e1e7ea;
+}
+
+.panel-header h3 {
+    font-size: 19px;
+
+    color: #163746;
+}
+
+.close-button {
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eef2f4;
+
+    color: #334;
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background: #dce4e8;
+}
+
+
+/* =========================================
+   PANEL CONTENT
+========================================= */
+
+.panel-content {
+    padding: 20px;
+}
+
+.panel-content img {
+    display: block;
+
+    width: 100%;
+
+    max-width: 800px;
+
+    height: auto;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   CHART
+========================================= */
+
+.chart-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    height: 420px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+    padding: 20px 32px;
+
+    text-align: center;
+
+    color: #71808a;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .site-header {
+        padding: 18px;
+    }
+
+    .map-navigation {
+        padding: 10px 18px;
+
+        flex-wrap: wrap;
+    }
+
+    .map-button {
+        flex: 1 1 auto;
+    }
+
+    .main-content {
+        padding: 20px 18px 30px;
+    }
+
+    .map-introduction h2 {
+        font-size: 23px;
+    }
+
+    .map-container {
+        height: 600px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .map-navigation {
+        flex-direction: column;
+    }
+
+    .map-button {
+        width: 100%;
+    }
+
+    .map-container {
+        height: 500px;
+    }
+
+    .map-tools {
+        flex-wrap: wrap;
+    }
+}
