@@ -4,7 +4,7 @@ GLOBAL
 
 :root {
 
-
+```
 --color-primary: #0b536f;
 --color-primary-dark: #073b50;
 --color-primary-light: #e9f3f7;
@@ -29,7 +29,7 @@ GLOBAL
 
 --shadow-large:
     0 20px 60px rgba(0, 0, 0, 0.25);
-
+```
 
 }
 
@@ -45,7 +45,7 @@ scroll-behavior: smooth;
 
 body {
 
-
+```
 margin: 0;
 padding: 0;
 
@@ -64,7 +64,7 @@ font-family:
 background: var(--color-background);
 
 color: var(--color-text);
-
+```
 
 }
 
@@ -74,7 +74,7 @@ HEADER
 
 .site-header {
 
-
+```
 height: var(--header-height);
 
 background:
@@ -92,13 +92,13 @@ box-shadow: var(--shadow-small);
 position: relative;
 
 z-index: 10;
-
+```
 
 }
 
 .header-inner {
 
-
+```
 height: 100%;
 
 max-width: 1600px;
@@ -111,25 +111,25 @@ padding:
 display: flex;
 
 align-items: center;
-
+```
 
 }
 
 .brand {
 
-
+```
 display: flex;
 
 align-items: center;
 
 gap: 14px;
-
+```
 
 }
 
 .brand-icon {
 
-
+```
 width: 44px;
 
 height: 44px;
@@ -149,13 +149,13 @@ border:
     1px solid rgba(255, 255, 255, 0.15);
 
 border-radius: 10px;
-
+```
 
 }
 
 .brand-text h1 {
 
-
+```
 margin: 0;
 
 font-size: 22px;
@@ -163,13 +163,13 @@ font-size: 22px;
 font-weight: 700;
 
 letter-spacing: -0.3px;
-
+```
 
 }
 
 .brand-text p {
 
-
+```
 margin:
     3px 0 0;
 
@@ -179,7 +179,7 @@ color:
     rgba(255, 255, 255, 0.68);
 
 letter-spacing: 0.3px;
-
+```
 
 }
 
@@ -189,7 +189,7 @@ NAVIGATION
 
 .map-navigation {
 
-
+```
 width: 100%;
 
 min-height: 62px;
@@ -214,13 +214,13 @@ gap: 8px;
 position: relative;
 
 z-index: 9;
-
+```
 
 }
 
 .map-button {
 
-
+```
 appearance: none;
 
 border: 1px solid transparent;
@@ -251,34 +251,34 @@ transition:
     background 0.18s ease,
     border-color 0.18s ease,
     transform 0.18s ease;
-
+```
 
 }
 
 .map-button:hover {
 
-
+```
 background:
     #eef5f8;
 
 color:
     var(--color-primary);
-
+```
 
 }
 
 .map-button:active {
 
-
+```
 transform:
     translateY(1px);
-
+```
 
 }
 
 .map-button.active {
 
-
+```
 color: white;
 
 background:
@@ -290,13 +290,13 @@ border-color:
 box-shadow:
     0 3px 8px
     rgba(11, 83, 111, 0.20);
-
+```
 
 }
 
 .button-number {
 
-
+```
 width: 23px;
 
 height: 23px;
@@ -316,18 +316,18 @@ background:
 
 color:
     var(--color-primary);
-
+```
 
 }
 
 .map-button.active .button-number {
 
-
+```
 background:
     rgba(255, 255, 255, 0.18);
 
 color: white;
-
+```
 
 }
 
@@ -337,7 +337,7 @@ MAIN
 
 .main-content {
 
-
+```
 width: 100%;
 
 max-width: 1600px;
@@ -346,7 +346,7 @@ margin: 0 auto;
 
 padding:
     28px 28px 36px;
-
+```
 
 }
 
@@ -356,7 +356,7 @@ MAP INFORMATION
 
 .map-information {
 
-
+```
 margin-bottom: 17px;
 
 display: flex;
@@ -364,13 +364,13 @@ display: flex;
 justify-content: space-between;
 
 gap: 30px;
-
+```
 
 }
 
 .map-category {
 
-
+```
 margin-bottom: 5px;
 
 font-size: 11px;
@@ -381,13 +381,13 @@ letter-spacing: 1.5px;
 
 color:
     var(--color-accent);
-
+```
 
 }
 
 .map-information h2 {
 
-
+```
 margin:
     0 0 8px;
 
@@ -400,13 +400,13 @@ letter-spacing:
 
 color:
     #102d3b;
-
+```
 
 }
 
 #map-description {
 
-
+```
 max-width: 950px;
 
 margin: 0;
@@ -417,7 +417,7 @@ color:
 font-size: 14px;
 
 line-height: 1.65;
-
+```
 
 }
 
@@ -427,7 +427,7 @@ TOOL BUTTONS
 
 .map-tools {
 
-
+```
 display: flex;
 
 align-items: center;
@@ -437,13 +437,13 @@ flex-wrap: wrap;
 gap: 9px;
 
 margin-bottom: 13px;
-
+```
 
 }
 
 .tool-button {
 
-
+```
 appearance: none;
 
 border:
@@ -471,13 +471,13 @@ transition:
     border-color 0.18s ease,
     color 0.18s ease,
     box-shadow 0.18s ease;
-
+```
 
 }
 
 .tool-button:hover {
 
-
+```
 background:
     var(--color-primary-light);
 
@@ -490,7 +490,7 @@ color:
 box-shadow:
     0 2px 5px
     rgba(0, 0, 0, 0.05);
-
+```
 
 }
 
@@ -500,7 +500,7 @@ MAP
 
 .map-wrapper {
 
-
+```
 width: 100%;
 
 height: 720px;
@@ -519,13 +519,13 @@ border-radius: 10px;
 
 box-shadow:
     var(--shadow-medium);
-
+```
 
 }
 
 #map-frame {
 
-
+```
 width: 100%;
 
 height: 100%;
@@ -540,13 +540,13 @@ background:
 position: relative;
 
 z-index: 2;
-
+```
 
 }
 
 .map-loading {
 
-
+```
 position: absolute;
 
 inset: 0;
@@ -566,7 +566,7 @@ background:
     #e7edf0;
 
 z-index: 1;
-
+```
 
 }
 
@@ -576,7 +576,7 @@ MODAL
 
 .modal {
 
-
+```
 position: fixed;
 
 inset: 0;
@@ -590,21 +590,21 @@ align-items: center;
 justify-content: center;
 
 padding: 25px;
-
+```
 
 }
 
 .modal.hidden {
 
-
+```
 display: none;
-
+```
 
 }
 
 .modal-backdrop {
 
-
+```
 position: absolute;
 
 inset: 0;
@@ -614,13 +614,13 @@ background:
 
 backdrop-filter:
     blur(3px);
-
+```
 
 }
 
 .modal-window {
 
-
+```
 position: relative;
 
 z-index: 2;
@@ -642,7 +642,7 @@ border-radius: 12px;
 
 box-shadow:
     var(--shadow-large);
-
+```
 
 }
 
@@ -652,7 +652,7 @@ MODAL HEADER
 
 .modal-header {
 
-
+```
 flex-shrink: 0;
 
 display: flex;
@@ -668,13 +668,13 @@ padding:
 
 border-bottom:
     1px solid var(--color-border);
-
+```
 
 }
 
 .modal-kicker {
 
-
+```
 display: block;
 
 margin-bottom: 4px;
@@ -687,26 +687,26 @@ letter-spacing: 1.4px;
 
 color:
     var(--color-accent);
-
+```
 
 }
 
 .modal-header h3 {
 
-
+```
 margin: 0;
 
 font-size: 20px;
 
 color:
     #173847;
-
+```
 
 }
 
 .modal-description {
 
-
+```
 margin:
     6px 0 0;
 
@@ -716,13 +716,13 @@ color:
 font-size: 13px;
 
 line-height: 1.5;
-
+```
 
 }
 
 .close-button {
 
-
+```
 flex-shrink: 0;
 
 width: 34px;
@@ -748,19 +748,19 @@ cursor: pointer;
 transition:
     background 0.18s ease,
     color 0.18s ease;
-
+```
 
 }
 
 .close-button:hover {
 
-
+```
 background:
     #dce5e9;
 
 color:
     #132d38;
-
+```
 
 }
 
@@ -770,18 +770,18 @@ MODAL CONTENT
 
 .modal-content {
 
-
+```
 overflow: auto;
 
 padding:
     22px;
-
+```
 
 }
 
 .legend-content {
 
-
+```
 display: flex;
 
 justify-content: center;
@@ -790,13 +790,13 @@ align-items: flex-start;
 
 background:
     #fafcfd;
-
+```
 
 }
 
 .legend-content img {
 
-
+```
 display: block;
 
 max-width: 100%;
@@ -804,7 +804,7 @@ max-width: 100%;
 height: auto;
 
 object-fit: contain;
-
+```
 
 }
 
@@ -814,25 +814,25 @@ CHART
 
 .chart-window {
 
-
+```
 width:
     min(1200px, 95vw);
-
+```
 
 }
 
 .chart-content {
 
-
+```
 padding:
     18px 20px 22px;
-
+```
 
 }
 
 .chart-status {
 
-
+```
 margin-bottom: 12px;
 
 padding:
@@ -847,37 +847,37 @@ color:
     #365966;
 
 font-size: 12px;
-
+```
 
 }
 
 .chart-status.error {
 
-
+```
 background:
     #fff0f0;
 
 color:
     #9c3030;
-
+```
 
 }
 
 .chart-status.success {
 
-
+```
 background:
     #edf7f1;
 
 color:
     #276545;
-
+```
 
 }
 
 .chart-scroll-container {
 
-
+```
 width: 100%;
 
 max-height: 62vh;
@@ -896,13 +896,13 @@ background:
 
 padding:
     14px;
-
+```
 
 }
 
 .chart-container {
 
-
+```
 position: relative;
 
 width: 100%;
@@ -910,7 +910,7 @@ width: 100%;
 min-width: 750px;
 
 height: 500px;
-
+```
 
 }
 
@@ -920,7 +920,7 @@ FOOTER
 
 .site-footer {
 
-
+```
 padding:
     20px 28px 25px;
 
@@ -930,7 +930,7 @@ color:
     #7a8991;
 
 font-size: 11px;
-
+```
 
 }
 
@@ -940,7 +940,7 @@ RESPONSIVE
 
 @media (max-width: 900px) {
 
-
+```
 .map-navigation {
 
     padding:
@@ -977,13 +977,13 @@ RESPONSIVE
 
     font-size: 25px;
 }
-
+```
 
 }
 
 @media (max-width: 600px) {
 
-
+```
 .site-header {
 
     height: auto;
@@ -1098,6 +1098,6 @@ RESPONSIVE
 
     min-width: 650px;
 }
-
+```
 
 }
